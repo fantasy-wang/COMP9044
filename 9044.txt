@@ -1,0 +1,85 @@
+https://www.cnblogs.com/dylancao/p/9178659.html
+https://blog.csdn.net/u010783148/article/details/73691154?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.nonecase
+http://www.letuknowit.com/topics/20120402/linux-shell-test-command.html/
+
+
+
+#!/usr/bin/perl -w
+
+if ($#ARGV > -1){
+    my @out;
+    for ($i=0;$i<=$#ARGV;$i++){
+        if ($ARGV[$i] =~ /[aeiouAEIOU]{3}/){
+            #print "$ARGV[$i]";
+            push @out, $ARGV[$i];
+        }
+    }
+    print "@out\n";
+
+
+}else{
+    print "\n";
+}
+
+#!/usr/bin/perl -w
+
+
+if ($#ARGV == 0){
+    open F, '<', $ARGV[0] or die "Can't open $ARGV[0]: $!";
+    @input=<F>;
+    $len=$#input+1;
+    #print "$len";
+    if ($len % 2 == 1){
+        print "$input[($len-1)/2]";
+    }else{
+        $n=$len/2;
+        $m=$n-1;
+        print "$input[$m]";
+        print "$input[$n]";
+    }
+
+    close F;
+
+}
+
+#!/usr/bin/perl -w
+
+
+@input=<>;
+my @a;
+my @b;
+
+foreach $line(@input){
+    my @number;
+    chomp $line;
+    @number = $line =~ /-?\d+\.?\d*/g;
+
+    @result = sort{$b<=>$a}@number;
+
+
+    if (! @result eq ''){
+        push @a, $line;
+        push @b, $result[0];
+    }
+}
+if (@b){
+    $max=$b[0];
+}
+
+for ($i=0;$i<$#b;$i++){
+    if ($max < $b[$i]){
+        $max=$b[$i];
+    }
+}
+
+for ($i=0;$i<=$#a;$i++){
+    if($b[$i] == $max){
+        print "$a[$i]\n";
+
+    }
+
+}
+
+
+
+
